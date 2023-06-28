@@ -18,7 +18,7 @@ const BtnFavorites = ({ courseId }) => {
       };
 
       //dispatch(addFavorite({ email, courseId }));
-      console.log("Alta de curso favorito realizada ", data);
+      console.log("Alta de fav realizada ", data);
     } catch (error) {
       console.log(error);
     }
