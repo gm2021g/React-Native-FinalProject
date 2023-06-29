@@ -9,6 +9,9 @@ const initialState = {
 const favoritesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_FAVORITES:
+      //console.log("state ", state);
+      //console.log("action.favorites  ", action.favorites);
+
       return {
         ...state,
         data: action.favorites,
@@ -24,7 +27,13 @@ const favoritesReducer = (state = initialState, action) => {
       };
 
     case ADD_FAVORITE:
+      /*  return {
+        ...state,
+      };
+*/
       let updatedFav = [];
+      console.log("Encontrados ", action.email, action.idCourse);
+      console.log("Data ", state.data);
 
       if (
         state.data.find(
@@ -33,7 +42,9 @@ const favoritesReducer = (state = initialState, action) => {
         )
       ) {
         updatedFav = [...state.data];
+        console.log("Encontro igual ");
       } else {
+        console.log("NO Encontro igual ");
         const result = { ...action.result };
         updatedFav = [...state.data, result];
       }

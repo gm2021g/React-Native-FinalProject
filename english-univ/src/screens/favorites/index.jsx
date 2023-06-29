@@ -1,61 +1,45 @@
-import { useState, React } from "react";
-import { SafeAreaView, FlatList, View, Text } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import React, { useCallback } from "react";
+import { View, FlatList, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { styles } from "./styles";
-import { InputSearch, CourseItem } from "../../components";
-import { COLORS } from "../../constants";
-import { selectCourse } from "../../store/actions/courses.action";
-import { filterCoursesSearch } from "../../store/actions/searches.action";
+import { FavoriteItem } from "../../components";
+import { deleteOrder, getFavorites } from "../../store/actions";
 
-const Favorites = ({ navigation }) => {
+const Favorites = () => {
   const dispatch = useDispatch();
-  const filteredCourses = useSelector(
-    (state) => state.searches.searchCoursesResult
-  );
-
-  const onSelected = (item) => {
-    dispatch(selectCourse(item.id));
-    navigation.navigate("Course", {
-      name: item.name,
-    });
-  };
-
-  const [keyWords, setkeyWords] = useState("");
-
-  const onSearch = () => {
-    if (keyWords.length === 0) return;
-    dispatch(filterCoursesSearch(keyWords));
-
-    setkeyWords("");
-  };
-
-  const renderItem = ({ item }) => (
-    <CourseItem item={item} onSelected={onSelected} color={COLORS.searches} />
-  );
+  const favorites = useSelector((state) => state.favorites.data);
+  const email = useSelector((state) => state.auth.email);
 
   const keyExtractor = (item) => item.id.toString();
+  const onRemove = (id) => {
+    dispatch(deleteOrder(id));
+    Alert.alert("Alert", "The Favorite was deleted", [
+      { text: "OK", onPress: () => {} },
+    ]);
+  };
+  const renderItem = ({ item }) => (
+    <FavoriteItem item={item} onRemove={onRemove} />
+  );
+
+  // cuando la vista de ordenes este en foco yo quiero que vuelva a despachar las ordenes
+  // useFocusEffect es parte de React navigation native
+  useFocusEffect(
+    useCallback(() => {
+      // useCallback memoriza una funcion, React almacena el resultado de una función y cuando se altera esa func. la llama para alterar el resultado en memoria
+      dispatch(getFavorites(email));
+    }, [dispatch])
+  );
 
   return (
-    <>
-      <View styles={styles.inputContainer}>
-        <InputSearch
-          buttonColor={COLORS.brightRed}
-          buttonTitle="Search"
-          onChangeText={(keyWords) => setkeyWords(keyWords)}
-          onHandlerButton={onSearch}
-          placeholder="Enter keywords"
-          value={keyWords}
-        />
-      </View>
-      <SafeAreaView style={styles.container}>
-        <FlatList
-          data={filteredCourses}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
-        />
-      </SafeAreaView>
-    </>
+    <View style={styles.container}>
+      <FlatList
+        data={favorites}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+      />
+    </View>
   );
 };
 

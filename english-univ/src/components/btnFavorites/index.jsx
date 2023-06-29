@@ -10,15 +10,9 @@ const BtnFavorites = ({ courseId }) => {
   const email = useSelector((state) => state.auth.email);
 
   const dispatch = useDispatch();
-  const addFavorite = () => {
+  const addFav = () => {
     try {
-      const data = {
-        email,
-        courseId,
-      };
-
-      //dispatch(addFavorite({ email, courseId }));
-      console.log("Alta de fav realizada ", data);
+      dispatch(addFavorite(email, courseId));
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +24,7 @@ const BtnFavorites = ({ courseId }) => {
         name="md-heart"
         size={30}
         color={COLORS.brightRed}
-        onPress={addFavorite}
+        onPress={addFav}
       />
     </View>
   );

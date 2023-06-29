@@ -9,3 +9,4 @@ export { default as InputSearch } from "./inputSearch/index";
 export { default as ImageSelector } from "./image-selector";
 export { default as LocationSelector } from "./location-selector";
 export { default as BtnFavorites } from "./btnFavorites";
+export { default as FavoriteItem } from "./favorite-item";

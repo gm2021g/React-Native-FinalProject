@@ -24,7 +24,6 @@ export const getFavorites = (email) => {
       }));
 
       favorites = favorites.filter((e) => e.email === email);
-
       dispatch({
         type: GET_FAVORITES,
         favorites,
@@ -61,7 +60,7 @@ export const deleteFavorite = (email, idCurse) => {
   };
 };
 
-export const addFavorite = ({ email, curseId }) => {
+export const addFavorite = (email, courseId) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -73,12 +72,13 @@ export const addFavorite = ({ email, curseId }) => {
           },
           body: JSON.stringify({
             email,
-            curseId,
+            courseId,
           }),
         }
       );
 
       const result = await response.json();
+      console.log("result", result);
 
       dispatch({
         type: ADD_FAVORITE,
