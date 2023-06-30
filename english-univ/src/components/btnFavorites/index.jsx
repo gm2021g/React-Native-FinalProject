@@ -6,13 +6,14 @@ import { styles } from "./styles";
 import { COLORS } from "../../constants";
 import { addFavorite } from "../../store/actions";
 
-const BtnFavorites = ({ courseId }) => {
+const BtnFavorites = ({ course }) => {
   const email = useSelector((state) => state.auth.email);
 
   const dispatch = useDispatch();
   const addFav = () => {
     try {
-      dispatch(addFavorite(email, courseId));
+      console.log("Lama a addFavorite");
+      dispatch(addFavorite(email, course));
     } catch (error) {
       console.log(error);
     }

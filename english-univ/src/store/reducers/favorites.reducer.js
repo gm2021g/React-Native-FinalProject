@@ -25,14 +25,10 @@ const favoritesReducer = (state = initialState, action) => {
             fav.email !== action.email && fav.idCourse !== action.idCourse
         ),
       };
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
     case ADD_FAVORITE:
-      /*  return {
-        ...state,
-      };
-*/
       let updatedFav = [];
-      console.log("Encontrados ", action.email, action.idCourse);
+      console.log("Encontrados ", action.course.id);
       console.log("Data ", state.data);
 
       if (

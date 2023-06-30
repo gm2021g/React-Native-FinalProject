@@ -8,11 +8,12 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 20,
     marginVertical: 10,
-    height: 120,
+    height: 150,
   },
   containerTouchable: {
     flex: 1,
     backgroundColor: COLORS.primary,
+    borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -26,9 +27,10 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
   name: {
-    fontSize: 14,
-    fontFamily: "Inter-Regular",
+    fontSize: 16,
+    fontFamily: "Inter-Bold",
     textAlign: "center",
+    paddingTop: 22
   },
   price: {
     fontSize: 15,
@@ -36,7 +38,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 5,
     textAlign: "center",
   },
-  weight: {
+  hours: {
     fontSize: 12,
     fontFamily: "Inter-Regular",
     textAlign: "center",

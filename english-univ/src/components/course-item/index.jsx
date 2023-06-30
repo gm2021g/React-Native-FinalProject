@@ -18,7 +18,7 @@ const CourseItem = ({ item, onSelected, color }) => {
           <Text style={styles.price}>USD {item.price}</Text>
           <Text style={styles.hours}>Hours: {item.hours}</Text>
         </View>
-        <BtnFavorites courseId={item.id} />
+        <BtnFavorites course={item} />
       </TouchableOpacity>
     </View>
   );

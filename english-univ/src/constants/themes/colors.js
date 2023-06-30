@@ -11,4 +11,5 @@ export const COLORS = {
   shadow: "#000",
   brightRed: "#E23428",
   searches: "#b8dbd9",
+  favorite: "#daa590",
 };

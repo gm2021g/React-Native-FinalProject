@@ -34,11 +34,11 @@ export const getFavorites = (email) => {
   };
 };
 
-export const deleteFavorite = (email, idCurse) => {
+export const deleteFavorite = (email, idCourse) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `${FIREBASE_REALTIME_DB_URL}/favorites/${email}/${idCurse}.json`,
+        `${FIREBASE_REALTIME_DB_URL}/favorites/${email}/${idCourse}.json`,
         {
           method: "DELETE",
           headers: {
@@ -52,7 +52,7 @@ export const deleteFavorite = (email, idCurse) => {
       dispatch({
         type: DELETE_FAVORITE,
         email,
-        idCurse,
+        idCourse,
       });
     } catch (error) {
       console.log(error);
@@ -60,7 +60,7 @@ export const deleteFavorite = (email, idCurse) => {
   };
 };
 
-export const addFavorite = (email, courseId) => {
+export const addFavorite = (email, course) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -72,7 +72,9 @@ export const addFavorite = (email, courseId) => {
           },
           body: JSON.stringify({
             email,
-            courseId,
+            courseId: course.id,
+            //   name: course.name,
+            //   price: course.price
           }),
         }
       );

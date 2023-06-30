@@ -9,7 +9,6 @@ import { addToCart } from "../../store/actions";
 const Course = () => {
   const dispatch = useDispatch();
   const course = useSelector((state) => state.courses.selected);
-
   const onAddToCart = () => {
     dispatch(addToCart(course));
   };

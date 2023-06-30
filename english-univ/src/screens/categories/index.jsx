@@ -1,22 +1,18 @@
 import React from "react";
-import {
-  FlatList,
-  SafeAreaView,
-  View,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { FlatList, SafeAreaView, TouchableOpacity, Text } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import { styles } from "./styles";
 import { Header, Detail } from "../../components";
 import CategoryItem from "../../components/category-item";
-import { COLORS } from "../../constants";
-import { selectCategory } from "../../store/actions";
+import { selectCategory, getFavorites } from "../../store/actions";
 
 const Categories = ({ navigation }) => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.data);
+  const email = useSelector((state) => state.auth.email);
+
+  dispatch(getFavorites(email));
 
   const onSelected = (item) => {
     dispatch(selectCategory(item.id)); // despacha la acción al hacer click en una categoría
