@@ -1,28 +1,47 @@
 import { useFocusEffect } from "@react-navigation/native";
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { View, FlatList, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { styles } from "./styles";
 import { CourseItem } from "../../components";
 import { COLORS } from "../../constants";
-import { deleteOrder, getFavorites, selectCourse } from "../../store/actions";
+import { selectAllCourses, selectCourse } from "../../store/actions";
+import {
+  getFavorites,
+  getFavoritesById,
+} from "../../utils/dbFireBase/favorites";
 
 const Favorites = ({ navigation }) => {
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites.data);
+  const [favorites, setFavorites] = useState(undefined);
   const email = useSelector((state) => state.auth.email);
+  const allCourses = useSelector((state) => state.courses.data);
+  dispatch(selectAllCourses());
 
-  const keyExtractor = (item) => item.id;
-  const onRemove = (id) => {
-    dispatch(deleteOrder(id));
-    Alert.alert("Alert", "The Favorite was deleted", [
-      { text: "OK", onPress: () => {} },
-    ]);
+  const showFav = async () => {
+    const resFavorites = await getFavorites(email);
+
+    const result = [];
+    resFavorites.forEach((fav) => {
+      allCourses.forEach((course) => {
+        if (fav.courseId === course.id) result.push(course);
+      });
+    });
+
+    setFavorites(result);
   };
 
+  useFocusEffect(
+    useCallback(() => {
+      showFav();
+    }, [])
+  );
+
+  const keyExtractor = (item) => item.id;
+
   const onSelected = (item) => {
-    dispatch(selectCourse(item.courseId));
+    dispatch(selectCourse(item.id));
     navigation.navigate("Course", {
       name: item.name,
     });
@@ -30,16 +49,6 @@ const Favorites = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <CourseItem item={item} onSelected={onSelected} color={COLORS.favorite} />
-  );
-
-  // cuando la vista de ordenes este en foco yo quiero que vuelva a despachar las ordenes
-  // useFocusEffect es parte de React navigation native
-
-  useFocusEffect(
-    useCallback(() => {
-      // useCallback memoriza una funcion, React almacena el resultado de una función y cuando se altera esa func. la llama para alterar el resultado en memoria
-      dispatch(getFavorites(email));
-    }, [dispatch])
   );
 
   return (

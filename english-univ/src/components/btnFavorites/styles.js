@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
     top: 0,
     right: 0,
     backgroundColor: COLORS.lightGray,
-    padding: 6,
-    paddingLeft: 12,
+    padding: 10,
+    paddingLeft: 15,
     borderBottomLeftRadius: 20,
   },
 });

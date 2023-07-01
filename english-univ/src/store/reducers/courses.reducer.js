@@ -1,7 +1,7 @@
 import { COURSES } from "../../constants/data/courses";
 import { courseTypes } from "../types";
 
-const { FILTER_COURSES, SELECT_COURSE } = courseTypes;
+const { FILTER_COURSES, SELECT_COURSE, SELECT_ALL_COURSES } = courseTypes;
 
 const initialState = {
   data: COURSES,
@@ -23,6 +23,11 @@ const coursesReducer = (state = initialState, action) => {
           (course) => course.category === action.categoryId
         ),
       };
+    case SELECT_ALL_COURSES:
+      return {
+        ...state,
+        courses: state.data
+      }
     default:
       return state;
   }

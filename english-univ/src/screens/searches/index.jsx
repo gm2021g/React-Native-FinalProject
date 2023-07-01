@@ -8,13 +8,11 @@ import { COLORS } from "../../constants";
 import { selectCourse } from "../../store/actions/courses.action";
 import { filterCoursesSearch } from "../../store/actions/searches.action";
 
-
 const Searches = ({ navigation }) => {
   const dispatch = useDispatch();
   const filteredCourses = useSelector(
     (state) => state.searches.searchCoursesResult
   );
-
   const onSelected = (item) => {
     dispatch(selectCourse(item.id));
     navigation.navigate("Course", {
