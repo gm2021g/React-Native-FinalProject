@@ -5,14 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { styles } from "./styles";
 import { Header, Detail } from "../../components";
 import CategoryItem from "../../components/category-item";
-import { selectCategory, getFavorites } from "../../store/actions";
+import { selectCategory } from "../../store/actions";
 
 const Categories = ({ navigation }) => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.data);
-  const email = useSelector((state) => state.auth.email);
-
-  dispatch(getFavorites(email));
 
   const onSelected = (item) => {
     dispatch(selectCategory(item.id)); // despacha la acción al hacer click en una categoría

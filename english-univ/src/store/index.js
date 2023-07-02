@@ -9,7 +9,6 @@ import {
   cartReducer,
   ordersReducer,
   authReducer,
-  favoritesReducer,
 } from "./reducers/index";
 
 const rootReducer = combineReducers({
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   orders: ordersReducer,
   auth: authReducer,
-  favorites: favoritesReducer,
 });
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunk));

@@ -1,6 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React, { useCallback, useState, useEffect } from "react";
-import { View, FlatList, Alert } from "react-native";
+import { View, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { styles } from "./styles";
@@ -8,8 +8,7 @@ import { CourseItem } from "../../components";
 import { COLORS } from "../../constants";
 import { selectAllCourses, selectCourse } from "../../store/actions";
 import {
-  getFavorites,
-  getFavoritesById,
+  getFavorites
 } from "../../utils/dbFireBase/favorites";
 
 const Favorites = ({ navigation }) => {

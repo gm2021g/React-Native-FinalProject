@@ -17,9 +17,6 @@ export const getFavorites = async (email) => {
     }));
 
     const favFiltered = favorites.filter((e) => e.email === email);
-
-    console.log("FAVORITES ....    ", favFiltered);
-
     return favFiltered;
   } catch (error) {
     console.log(error);
