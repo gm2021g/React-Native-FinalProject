@@ -26,11 +26,7 @@ export const getFavorites = async (email) => {
 export const removeFavorite = async (email, idCourse) => {
   try {
     const resultGet = await getFavoritesById(email, idCourse);
-
-    console.log("resultGet   ", resultGet, resultGet[0].id);
-
     if (resultGet && resultGet.length > 0) {
-      console.log("ENTRO ");
       const response = await fetch(
         `${FIREBASE_REALTIME_DB_URL}/favorites/${resultGet[0].id}.json`,
         {
@@ -40,8 +36,6 @@ export const removeFavorite = async (email, idCourse) => {
           },
         }
       );
-
-      //const result = await response.json();
     }
   } catch (error) {
     console.log(error);
@@ -60,8 +54,6 @@ export const addFavorite = async (email, courseId) => {
         courseId,
       }),
     });
-
-    // const result = await response.json();
   } catch (error) {
     console.log(error);
   }

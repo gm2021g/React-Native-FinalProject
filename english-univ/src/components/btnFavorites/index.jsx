@@ -40,7 +40,6 @@ const BtnFavorites = ({ course }) => {
 
   const removeFav = async () => {
     try {
-      console.log("Elimina fav");
       await removeFavorite(email, course.id);
       onReload();
     } catch (error) {

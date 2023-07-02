@@ -4,7 +4,6 @@ import { styles } from "./styles";
 import { COLORS } from "../../constants";
 import Label from "../label";
 
-// Recibe propiedades de la vista que lo invoca, es un componente genérico
 const Input = ({
   editable,
   children,

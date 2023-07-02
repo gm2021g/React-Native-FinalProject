@@ -20,13 +20,7 @@ const cartReducer = (state = initialState, action) => {
         Alert.alert("Alert", "The Course already exists in the Cart", [
           { text: "OK", onPress: () => {} },
         ]);
-        // CommonJS
-        /*  updatedCart = state.data.map((item) => {
-          if (item.id === action.item.id) item.quantity += 1;
-          return item;
-        }); */
       } else {
-        //   const item = { ...action.item, quantity: 1 };
         const item = { ...action.item };
         updatedCart = [...state.data, item];
       }

@@ -1,6 +1,2 @@
 export const sumTotal = (items) =>
-  items
-    //  .map((item) => item.price * item.quantity)
-    .map((item) => item.price)
-    .reduce((acc, curr) => acc + curr, 0);
-
+  items.map((item) => item.price).reduce((acc, curr) => acc + curr, 0);

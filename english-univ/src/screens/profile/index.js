@@ -13,7 +13,6 @@ import {
 } from "../../db";
 
 const Profile = () => {
-  //const dispatch = useDispatch();
   const email = useSelector((state) => state.auth.email);
   const [place, setPlace] = useState("");
   const [name, setName] = useState("");
@@ -60,7 +59,6 @@ const Profile = () => {
   const onHandlerSubmit = async () => {
     try {
       if (size > 0) {
-        //***************** hacer update, si existe el usuario
         const result = await updateProfile(
           email,
           name,
@@ -71,7 +69,6 @@ const Profile = () => {
           coords
         );
       } else {
-        //***************** hacer insert, no existe el usuario
         const result = await insertProfile(
           email,
           name,

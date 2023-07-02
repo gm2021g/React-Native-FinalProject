@@ -43,9 +43,8 @@ export const onInputChange = ({ name, value, dispatch, formState }) => {
   const { hasError, error } = validateInput({ name, value });
   let isFormValid = true;
 
-  // key es email y password
   for (const key in formState) {
-    const item = formState[key]; // ejemplo formState[email]
+    const item = formState[key];
     if (key !== name && hasError) {
       isFormValid = false;
       break;
@@ -58,12 +57,12 @@ export const onInputChange = ({ name, value, dispatch, formState }) => {
   dispatch({
     type: UPDATE_FORM,
     data: {
-      name, // nombre del campo
-      value, // valor del campo
-      hasError, // si tiene un error el campo
-      error, // mensaje de error
-      touched: true, // ya interactuó con ese campo
-      isFormValid, // si el formulario es válido o no
+      name,
+      value,
+      hasError,
+      error,
+      touched: true,
+      isFormValid,
     },
   });
 };

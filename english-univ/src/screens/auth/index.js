@@ -9,15 +9,14 @@ import { signIn, signUp } from "../../store/actions";
 import { UPDATE_FORM, onInputChange } from "../../utils/form";
 
 const initialState = {
-  email: { value: "", error: "", touched: false, hasError: true }, // hasError se inicializa en true porque el campo es requerido
+  email: { value: "", error: "", touched: false, hasError: true },
   password: { value: "", error: "", touched: false, hasError: true },
-  isFormValid: false, // si ambos campos (email y password) son válidos
+  isFormValid: false,
 };
 
 const formReducer = (state, action) => {
   switch (action.type) {
     case UPDATE_FORM:
-      // eslint-disable-next-line no-case-declarations
       const { name, value, hasError, error, touched, isFormValid } =
         action.data;
       return {

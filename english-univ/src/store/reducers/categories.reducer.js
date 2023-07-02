@@ -21,7 +21,7 @@ const categoriesReducer = (state = initialState, action) => {
         selected: state.data[indexCategory],
       };
     default:
-      return state; // retorna estado inicial por default
+      return state;
   }
 };
 

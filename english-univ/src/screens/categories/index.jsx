@@ -12,16 +12,14 @@ const Categories = ({ navigation }) => {
   const categories = useSelector((state) => state.categories.data);
 
   const onSelected = (item) => {
-    dispatch(selectCategory(item.id)); // despacha la acción al hacer click en una categoría
+    dispatch(selectCategory(item.id));
     navigation.navigate("Courses", {
-      name: item.name, // nombre y color en la parte superior
+      name: item.name,
       color: item.color,
     });
   };
 
-  // se ejecuta cuando presiona el botón "My Profile"
   const onHandleProfile = () => {
-    //dispatch(selectCategory(item.id)); // despacha la acción al hacer click en una categoría
     navigation.navigate("Profile");
   };
 

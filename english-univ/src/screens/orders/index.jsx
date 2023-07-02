@@ -23,11 +23,8 @@ const Orders = () => {
     <OrderItem item={item} onRemove={onRemove} />
   );
 
-  // cuando la vista de ordenes este en foco yo quiero que vuelva a despachar las ordenes
-  // useFocusEffect es parte de React navigation native
   useFocusEffect(
     useCallback(() => {
-      // useCallback memoriza una funcion, React almacena el resultado de una función y cuando se altera esa func. la llama para alterar el resultado en memoria
       dispatch(getOrders(email));
     }, [dispatch])
   );

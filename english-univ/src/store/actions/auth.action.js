@@ -15,7 +15,6 @@ const {
   CLEAR_ERROR,
 } = authTypes;
 
-// registro de usuario
 export const signUp = ({ email, password }) => {
   return async (dispatch) => {
     try {
@@ -37,7 +36,6 @@ export const signUp = ({ email, password }) => {
       }
       const data = await response.json();
 
-      // da de alta usuario en tabla profiles de sqlite solo con el email
       try {
         const result = await insertProfile(
           email,
@@ -51,7 +49,6 @@ export const signUp = ({ email, password }) => {
       } catch (error) {
         console.warn(" Error saving user " + error);
       }
-      //
 
       dispatch({
         type: SIGN_UP_SUCCESS,
@@ -68,7 +65,6 @@ export const signUp = ({ email, password }) => {
   };
 };
 
-// login de usuario
 export const signIn = ({ email, password }) => {
   return async (dispatch) => {
     try {
@@ -81,7 +77,7 @@ export const signIn = ({ email, password }) => {
         body: JSON.stringify({
           email,
           password,
-          returnSecureToken: true, // para que se asocie a la cuenta del usuario
+          returnSecureToken: true,
         }),
       });
 
@@ -94,7 +90,6 @@ export const signIn = ({ email, password }) => {
         });
       } else {
         dispatch({
-          // se despacha lo que nos retorna el servicio
           type: SIGN_IN_SUCCESS,
           token: data.idToken,
           userId: data.localId,
